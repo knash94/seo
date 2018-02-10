@@ -15,6 +15,6 @@ class HttpError extends Model {
      */
     public function redirect()
     {
-        return $this->hasOne(HttpRedirect::class);
+        return $this->hasOne(HttpRedirect::class, 'http_error_id');
     }
 }
