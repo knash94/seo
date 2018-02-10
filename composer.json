@@ -12,7 +12,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "knash94\\seo-tools\\": "src/"
+            "Knash94\\Seo\\": "src/"
         }
     }
 }
