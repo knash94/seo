@@ -1,20 +1,27 @@
 <?php
 
-namespace Knash94\Seo\Store\Eloquent\Repositories;
+namespace Knash94\Seo;
 
 
 use Illuminate\Http\Request;
-use Knash94\Seo\Contracts\NotFoundContract;
+use Knash94\Seo\Contracts\HttpErrorsContract;
+use Knash94\Seo\Contracts\PageNotFoundHandlerContract;
 
-class NotFound implements NotFoundContract
+class PageNotFoundHandler implements PageNotFoundHandlerContract
 {
+    /**
+     * @var HttpErrorsContract
+     */
+    protected $httpErrors;
+
     /**
      * @var Request
      */
     protected $request;
 
-    function __construct(Request $request)
+    function __construct(HttpErrorsContract $httpErrors, Request $request)
     {
+        $this->httpErrors = $httpErrors;
         $this->request = $request;
     }
 

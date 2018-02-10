@@ -2,8 +2,9 @@
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
-use Knash94\Seo\Contracts\NotFoundContract;
-use Knash94\Seo\Store\Eloquent\Repositories\NotFound;
+use Knash94\Seo\Contracts\HttpErrorsContract;
+use Knash94\Seo\Contracts\PageNotFoundHandlerContract;
+use Knash94\Seo\Store\Eloquent\Repositories\HttpErrors;
 
 class SeoServiceProvider extends ServiceProvider {
 
@@ -24,7 +25,8 @@ class SeoServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-	    app()->bind(NotFoundContract::class, NotFound::class);
+	    app()->bind(HttpErrorsContract::class, HttpErrors::class);
+	    app()->bind(PageNotFoundHandlerContract::class, PageNotFoundHandler::class);
 	}
 
 }

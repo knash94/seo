@@ -3,7 +3,8 @@
 namespace Knash94\Seo\Traits;
 
 use Exception;
-use Knash94\Seo\Contracts\NotFoundContract;
+use Knash94\Seo\Contracts\HttpErrorsContract;
+use Knash94\Seo\PageNotFoundHandler;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 trait LogsMissingPages
@@ -17,7 +18,7 @@ trait LogsMissingPages
     public function reportNotFound(Exception $e)
     {
         if ($e instanceof NotFoundHttpException) {
-            $service = app()->make(NotFoundContract::class);
+            $service = app()->make(PageNotFoundHandler::class);
             $service->handleHttpNotFoundException($e);
         }
     }
