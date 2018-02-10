@@ -9,5 +9,10 @@
             "name": "Kyle Nash",
             "email": "kylenash94@gmail.com"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "knash94\\seo-tools\\": "src/"
+        }
+    }
 }
