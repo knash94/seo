@@ -18,6 +18,8 @@ class CreateHttpRedirectsTable extends Migration {
 
 			$table->integer('http_error_id')->unsigned()->nullable();
 
+			$table->integer('status_code')->default(302);
+
 			$table->string('path');
 
 			$table->string('redirect_url');
