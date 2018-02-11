@@ -73,6 +73,6 @@ class SeoRedirectController extends BaseController {
         $sort = $request->has('redirects-sort') ? $request->get('redirects-sort') : 'last_hit';
         $sortDir = $request->has('redirects-sort-dir') ? $request->get('redirects-sort-dir') : 'desc';
 
-        return $this->httpErrors->getErrors($sort, $sortDir);
+        return $this->httpRedirects->getRedirects($sort, $sortDir);
     }
 }

@@ -2,7 +2,6 @@
     <div class="col-md-12">
         <table class="table table-responsive table-hover">
             <thead>
-            <th>URL</th>
             <th>
                 <a href="{{ route('seo-tools.index', [
                                                     'redirects-sort' => 'hits',
@@ -30,27 +29,28 @@
                     Status Code
                 </a>
             </th>
+            <th>Created</th>
             <th>Manage</th>
+            <th>Delete</th>
             </thead>
             <tbody>
-            {{--@foreach($errors as $error)--}}
-                {{--<tr>--}}
-                    {{--<td>{{ url() }}/{{ $error->path }}</td>--}}
-                    {{--<td>{{ $error->hits }}</td>--}}
-                    {{--<td>{{ $error->last_hit->diffForHumans() }}</td>--}}
-                    {{--<td>{{ $error->created_at->diffForHumans() }}</td>--}}
-                    {{--<td>--}}
-                        {{--@if ($error->redirect)--}}
-                            {{--<a class="btn btn-xs btn-success">Manage redirect</a>--}}
-                        {{--@else--}}
-                            {{--<a href="#" class="btn btn-xs btn-primary">Add redirect</a>--}}
-                        {{--@endif--}}
-                    {{--</td>--}}
-                {{--</tr>--}}
-            {{--@endforeach--}}
+            @foreach($redirects as $redirect)
+                <tr>
+                    <td><a href="{{ url() }}/{{ $redirect->path }}" target="_blank">{{ url() }}/{{ $redirect->path }}</a></td>
+                    <td>{{ $redirect->redirect_url }}</td>
+                    <td>{{ $redirect->status_code }}</td>
+                    <td>{{ $redirect->created_at->diffForHumans() }}</td>
+                    <td>
+                        <a class="btn btn-xs btn-success">Manage redirect</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-xs btn-danger">Delete redirect</a>
+                    </td>
+                </tr>
+            @endforeach
             </tbody>
         </table>
 
-        {!! $errors->render() !!}
+        {!! $redirects->render() !!}
     </div>
 </div>

@@ -24,7 +24,7 @@
                         <div id="menu1" class="tab-pane fade">
                             <h3>HTTP Redirects</h3>
 
-                            @include('seo-tools::bootstrap3.partials.errors-table')
+                            @include('seo-tools::bootstrap3.partials.redirects-table')
                         </div>
                         <div id="menu2" class="tab-pane fade">
                             <h3>Menu 2</h3>
