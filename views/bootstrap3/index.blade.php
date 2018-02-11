@@ -25,9 +25,33 @@
                                     <table class="table table-responsive">
                                         <thead>
                                             <th>URL</th>
-                                            <th>Amount of errors</th>
-                                            <th>Last error</th>
-                                            <th>First reported</th>
+                                            <th>
+                                                <a href="{{ route('seo-tools.index', [
+                                                    'errors-sort' => 'hits',
+                                                    'errors-sort-dir' => Request::get('errors-sort-dir') == 'asc' || !Request::get('errors-sort-dir') ? 'desc' : 'asc'
+                                                    ]) }}"
+                                                >
+                                                    Amount of errors
+                                                </a>
+                                            </th>
+                                            <th>
+                                                <a href="{{ route('seo-tools.index', [
+                                                    'errors-sort' => 'last_hit',
+                                                    'errors-sort-dir' => Request::get('errors-sort-dir') == 'asc' || !Request::get('errors-sort-dir') ? 'desc' : 'asc'
+                                                    ]) }}"
+                                                >
+                                                    Last error
+                                                </a>
+                                            </th>
+                                            <th>
+                                                <a href="{{ route('seo-tools.index', [
+                                                    'errors-sort' => 'created_at',
+                                                    'errors-sort-dir' => Request::get('errors-sort-dir') == 'asc' || !Request::get('errors-sort-dir') ? 'desc' : 'asc'
+                                                    ]) }}"
+                                                >
+                                                    First reported
+                                                </a>
+                                            </th>
                                             <th>Manage</th>
                                         </thead>
                                         <tbody>
