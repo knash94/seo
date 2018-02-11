@@ -35,7 +35,7 @@
             <tbody>
             @foreach($errors as $error)
                 <tr>
-                    <td><a href="{{ url() }}/{{ $error->path }}">{{ url() }}/{{ $error->path }}</a></td>
+                    <td><a href="{{ url('/') }}/{{ $error->path }}">{{ url('/') }}/{{ $error->path }}</a></td>
                     <td>{{ $error->hits }}</td>
                     <td>{{ $error->last_hit->diffForHumans() }}</td>
                     <td>{{ $error->created_at->diffForHumans() }}</td>

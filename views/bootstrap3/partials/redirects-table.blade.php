@@ -36,7 +36,7 @@
             <tbody>
             @foreach($redirects as $redirect)
                 <tr>
-                    <td><a href="{{ url() }}/{{ $redirect->path }}" target="_blank">{{ url('/') }}/{{ $redirect->path }}</a></td>
+                    <td><a href="{{ url('/') }}/{{ $redirect->path }}" target="_blank">{{ url('/') }}/{{ $redirect->path }}</a></td>
                     <td><a href="{{ $redirect->redirect_url }}" target="_blank">{{ $redirect->redirect_url }}</a></td>
                     <td>{{ $redirect->status_code }}</td>
                     <td>{{ $redirect->created_at->diffForHumans() }}</td>

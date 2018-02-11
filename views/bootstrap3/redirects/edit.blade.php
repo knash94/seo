@@ -28,7 +28,7 @@
                         <div class="form-group">
                             <label class="control-label" for="path">Base path</label>
                             <div class="input-group">
-                                <div class="input-group-addon">{{ url() }}/</div>
+                                <div class="input-group-addon">{{ url('/') }}/</div>
                                 <input class="form-control" name="path" type="text" value="{{ $httpRedirect->path }}" id="path"  aria-label="Small" aria-describedby="inputGroup-sizing-sm" required>
                             </div>
                         </div>

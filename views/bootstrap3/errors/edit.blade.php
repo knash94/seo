@@ -5,7 +5,7 @@
         <div class="row">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h1 class="panel-title">Managing {{ url() }}/{{ $httpError->path }}</h1>
+                    <h1 class="panel-title">Managing {{ url('/') }}/{{ $httpError->path }}</h1>
                 </div>
 
                 <div class="panel-body">
@@ -27,7 +27,7 @@
 
                         <div class="form-group">
                             <label class="control-label" for="path">Base path</label>
-                            <input class="form-control" type="text" value="{{ url() }}/{{ $httpError->path }}" id="path" readonly>
+                            <input class="form-control" type="text" value="{{ url('/') }}/{{ $httpError->path }}" id="path" readonly>
                         </div>
 
                         <div class="form-group">
