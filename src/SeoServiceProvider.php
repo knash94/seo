@@ -20,7 +20,6 @@ class SeoServiceProvider extends ServiceProvider {
 	{
 		$this->registerRoutes();
 
-//		dd(__DIR__.'\..\views');
         $this->loadViewsFrom(__DIR__.'\..\views', 'seo-tools');
 
         $this->publishes([
@@ -35,10 +34,9 @@ class SeoServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-	    app()->bind(HttpErrorsContract::class, HttpErrors::class);
-	    app()->bind(PageNotFoundHandlerContract::class, PageNotFoundHandler::class);
-        app()->bind(HttpRedirectsContract::class, HttpRedirects::class);
-
+	    $this->app->bind(HttpErrorsContract::class, HttpErrors::class);
+	    $this->app->bind(PageNotFoundHandlerContract::class, PageNotFoundHandler::class);
+        $this->app->bind(HttpRedirectsContract::class, HttpRedirects::class);
     }
 
     protected function registerRoutes()
