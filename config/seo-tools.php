@@ -4,11 +4,12 @@ return [
     'routing' => [
         'prefix' => 'admin/seo-tools',
         'namespace' => 'Knash94\Seo\Http\Controllers',
-        'middleware' => ''
+        'middleware' => []
     ],
 
     'views' => [
         'template' => 'seo-tools::templates.default',
-        'section' => 'content'
+        'section' => 'content',
+        'index' => 'seo-tools::bootstrap3.index'
     ]
 ];
