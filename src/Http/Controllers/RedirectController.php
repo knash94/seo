@@ -66,6 +66,25 @@ class RedirectController extends BaseController {
     }
 
     /**
+     * Stores the new redirect
+     *
+     * @param RedirectRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function store(RedirectRequest $request)
+    {
+        $create = $this->httpRedirects->createRedirect($request->only(['redirect_url', 'status_code', 'path']));
+
+        if ($create) {
+            session()->flash('seo-tools.message', 'You have successfully created the redirect.');
+            return redirect()->route('seo-tools.index');
+        }
+
+        session()->flash('seo-tools.message', 'There was an error creating the redirect.');
+        return redirect()->back();
+    }
+
+    /**
      * Shows the delete screen
      *
      * @param $id

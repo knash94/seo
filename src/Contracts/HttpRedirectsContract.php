@@ -37,6 +37,14 @@ interface HttpRedirectsContract
     public function updateRedirect($id, $data);
 
     /**
+     * Create a redirect
+     *
+     * @param $data
+     * @return \Illuminate\Database\Eloquent\Model|int|null
+     */
+    public function createRedirect($data);
+
+    /**
      * Deletes the redirect
      *
      * @param $id

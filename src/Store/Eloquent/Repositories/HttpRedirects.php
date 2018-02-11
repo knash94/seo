@@ -85,6 +85,17 @@ class HttpRedirects implements HttpRedirectsContract
     }
 
     /**
+     * Create a redirect
+     *
+     * @param $data
+     * @return \Illuminate\Database\Eloquent\Model|int|null
+     */
+    public function createRedirect($data)
+    {
+        return $this->model->create($this->refineRedirectData($data));
+    }
+
+    /**
      * Deletes the redirect
      *
      * @param $id
@@ -99,10 +110,9 @@ class HttpRedirects implements HttpRedirectsContract
      * Refines the redirect data to update or create a error's redirect
      *
      * @param $data
-     * @param $model
      * @return array
      */
-    protected function refineRedirectData($data, $model)
+    protected function refineRedirectData($data)
     {
         return [
             'redirect_url' => $data['redirect_url'],
