@@ -124,4 +124,42 @@ class HttpErrors implements HttpErrorsContract
     {
         return $this->model->find($id);
     }
+
+    /**
+     * Updates the redirect for an error
+     *
+     * @param $id
+     * @param $data
+     * @return \Illuminate\Database\Eloquent\Model|int|null
+     */
+    public function updateError($id, $data)
+    {
+        $model = $this->getError($id);
+
+        if (!$model) {
+            return null;
+        }
+
+        if ($model->redirect) {
+            return $model->redirect()->update($this->refineRedirectData($data, $model));
+        }
+
+        return $model->redirect()->create($this->refineRedirectData($data, $model));
+    }
+
+    /**
+     * Refines the redirect data to update or create a error's redirect
+     *
+     * @param $data
+     * @param $model
+     * @return array
+     */
+    protected function refineRedirectData($data, $model)
+    {
+        return [
+            'redirect_url' => $data['redirect_url'],
+            'status_code' => $data['status_code'],
+            'path' => $model->path
+        ];
+    }
 }

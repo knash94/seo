@@ -10,6 +10,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\View\View;
 use Knash94\Seo\Contracts\HttpErrorsContract;
 use Knash94\Seo\Contracts\HttpRedirectsContract;
+use Knash94\Seo\Http\Requests\ErrorRequest;
 
 class ErrorsController extends BaseController {
     use DispatchesCommands, ValidatesRequests;
@@ -44,5 +45,25 @@ class ErrorsController extends BaseController {
             'section' => config('seo-tools.views.section'),
             'error' => $error
         ]);
+    }
+
+    /**
+     * Updates a current 404 page
+     *
+     * @param $id
+     * @param ErrorRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update($id, ErrorRequest $request)
+    {
+        $update = $this->httpErrors->updateError($id, $request->only(['redirect_url', 'status_code']));
+
+        if ($update) {
+            session()->flash('seo-tools.message', 'You have successfully updated the redirect.');
+            return redirect()->route('seo-tools.index');
+        }
+
+        session()->flash('seo-tools.message', 'You have successfully updated the redirect.');
+        return redirect()->back();
     }
 }

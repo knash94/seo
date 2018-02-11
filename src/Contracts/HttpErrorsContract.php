@@ -54,4 +54,13 @@ interface HttpErrorsContract
      * @return LengthAwarePaginator|Collection
      */
     public function getErrors($sort = 'hits', $direction = 'desc', $paginate = true, $perPage = 12);
+
+    /**
+     * Updates the redirect for an error
+     *
+     * @param $id
+     * @param $data
+     * @return \Illuminate\Database\Eloquent\Model|int|null
+     */
+    public function updateError($id, $data);
 }

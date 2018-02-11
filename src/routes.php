@@ -13,4 +13,9 @@ Route::group([
         'uses' => 'ErrorsController@edit',
         'as' => 'seo-tools.error.edit'
     ]);
+
+    Route::post('/error/{id}', [
+        'uses' => 'ErrorsController@update',
+        'as' => 'seo-tools.error.update'
+    ]);
 });

@@ -9,8 +9,8 @@
                 </div>
 
                 <div class="panel-body">
-                    <form action="" method="post">
-                        <input type="hidden" name="_csrf_field" value="{{ csrf_token() }}">
+                    <form action="{{ route('seo-tools.error.update', $error->id) }}" method="post">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                         <div class="form-group">
                             <label class="control-label" for="path">Base path</label>
@@ -19,8 +19,17 @@
 
                         <div class="form-group">
                             <label class="control-label" for="target">Redirect to</label>
-                            <input class="form-control" name="redirect_url" type="text" value="{{ $error->redirect ? $error->redirect->redirect_url : '' }}" id="target" placeholder="https://www.example.com/my-example-page">
+                            <input class="form-control" name="redirect_url" type="text" value="{{ $error->redirect ? $error->redirect->redirect_url : '' }}" id="target" placeholder="https://www.example.com/my-example-page" required>
                             <span class="text-warning">* This must be the full url of where you are wanting to redirect to</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" for="status_code">Status code</label>
+                            <select name="status_code" class="form-control" required>
+                                <option disabled readonly selected>Please select..</option>
+                                <option value="301" {{ $error->redirect && $error->redirect->status_code == 301 ? 'selected' : '' }}>301 (Permanent redirect)</option>
+                                <option value="302" {{ $error->redirect && $error->redirect->status_code == 301 ? 'selected' : '' }}>302 (Temporary redirect)</option>
+                            </select>
                         </div>
 
                         <div class="form-group">
