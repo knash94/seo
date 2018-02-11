@@ -90,6 +90,9 @@ class HttpErrors implements HttpErrorsContract
      *
      * @param string $sort
      * @param string $direction
+     * @param bool $paginate
+     * @param int $perPage
+     * @return
      */
     public function getErrors($sort = 'hits', $direction = 'desc', $paginate = true, $perPage = 12)
     {
