@@ -42,8 +42,8 @@ class SeoRedirectController extends BaseController {
         return view(config('seo-tools.views.index'), [
             'template' => config('seo-tools.views.template'),
             'section' => config('seo-tools.views.section'),
-            'redirects' => $redirects,
-            'errors' => $errors
+            'redirects' => $redirects->appends($request->except(['redirects', 'errors'])),
+            'errors' => $errors->appends($request->except(['redirects', 'errors']))
         ]);
     }
 
