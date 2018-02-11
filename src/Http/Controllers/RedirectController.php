@@ -8,20 +8,19 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\View\View;
-use Knash94\Seo\Contracts\HttpErrorsContract;
 use Knash94\Seo\Contracts\HttpRedirectsContract;
-use Knash94\Seo\Http\Requests\ErrorRequest;
+use Knash94\Seo\Http\Requests\RedirectRequest;
 
-class ErrorsController extends BaseController {
+class RedirectController extends BaseController {
 
     /**
-     * @var HttpErrorsContract
+     * @var HttpRedirectsContract
      */
-    protected $httpErrors;
+    protected $httpRedirects;
 
-    function __construct(HttpErrorsContract $httpErrors)
+    function __construct(HttpRedirectsContract $httpRedirects)
     {
-        $this->httpErrors = $httpErrors;
+        $this->httpRedirects = $httpRedirects;
     }
 
     /**
@@ -33,29 +32,29 @@ class ErrorsController extends BaseController {
      */
     public function edit($id, Request $request)
     {
-        $error = $this->httpErrors->getError($id);
+        $redirect = $this->httpRedirects->getRedirect($id);
 
-        if (!$error) {
+        if (!$redirect) {
             abort(404);
         }
 
-        return view(config('seo-tools.views.errors.edit'), [
+        return view(config('seo-tools.views.redirects.edit'), [
             'template' => config('seo-tools.views.template'),
             'section' => config('seo-tools.views.section'),
-            'httpError' => $error
+            'httpRedirect' => $redirect
         ]);
     }
 
     /**
-     * Updates a current 404 page
+     * Updates a current redirect
      *
      * @param $id
-     * @param ErrorRequest $request
+     * @param RedirectRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update($id, ErrorRequest $request)
+    public function update($id, RedirectRequest $request)
     {
-        $update = $this->httpErrors->updateError($id, $request->only(['redirect_url', 'status_code']));
+        $update = $this->httpRedirects->updateRedirect($id, $request->only(['redirect_url', 'status_code', 'path']));
 
         if ($update) {
             session()->flash('seo-tools.message', 'You have successfully updated the redirect.');

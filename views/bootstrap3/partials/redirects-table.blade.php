@@ -41,7 +41,7 @@
                     <td>{{ $redirect->status_code }}</td>
                     <td>{{ $redirect->created_at->diffForHumans() }}</td>
                     <td>
-                        <a class="btn btn-xs btn-success">Manage redirect</a>
+                        <a href="{{route('seo-tools.redirect.edit', $redirect->id)}}" class="btn btn-xs btn-success">Manage redirect</a>
                     </td>
                     <td>
                         <a class="btn btn-xs btn-danger">Delete redirect</a>

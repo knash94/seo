@@ -14,6 +14,10 @@ return [
 
         'errors' => [
             'edit' => 'seo-tools::bootstrap3.errors.edit'
+        ],
+
+        'redirects' => [
+            'edit' => 'seo-tools::bootstrap3.redirects.edit'
         ]
     ]
 ];

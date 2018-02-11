@@ -53,4 +53,49 @@ class HttpRedirects implements HttpRedirectsContract
 
         return $query->get();
     }
+
+    /**
+     * Returns the HTTP Redirect of a given ID
+     *
+     * @param $id
+     * @return HttpRedirect
+     */
+    public function getRedirect($id)
+    {
+        return $this->model->find($id);
+    }
+
+    /**
+     * Updates the redirect
+     *
+     * @param $id
+     * @param $data
+     * @return \Illuminate\Database\Eloquent\Model|int|null
+     */
+    public function updateRedirect($id, $data)
+    {
+        $model = $this->getRedirect($id);
+
+        if (!$model) {
+            return null;
+        }
+
+        return $model->update($this->refineRedirectData($data, $model));
+    }
+
+    /**
+     * Refines the redirect data to update or create a error's redirect
+     *
+     * @param $data
+     * @param $model
+     * @return array
+     */
+    protected function refineRedirectData($data, $model)
+    {
+        return [
+            'redirect_url' => $data['redirect_url'],
+            'status_code' => $data['status_code'],
+            'path' => $data['path']
+        ];
+    }
 }

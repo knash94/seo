@@ -12,7 +12,6 @@ use Knash94\Seo\Contracts\HttpErrorsContract;
 use Knash94\Seo\Contracts\HttpRedirectsContract;
 
 class SeoRedirectController extends BaseController {
-    use DispatchesCommands, ValidatesRequests;
 
     /**
      * @var HttpErrorsContract
