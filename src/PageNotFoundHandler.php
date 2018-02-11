@@ -2,7 +2,6 @@
 
 namespace Knash94\Seo;
 
-
 use Illuminate\Http\Request;
 use Knash94\Seo\Contracts\HttpErrorsContract;
 use Knash94\Seo\Contracts\HttpRedirectsContract;

@@ -2,7 +2,8 @@
 
 Route::group([
     'prefix' => config('seo-tools.routing.prefix'),
-    'namespace' => config('seo-tools.routing.namespace')
+    'namespace' => config('seo-tools.routing.namespace'),
+    'middleware' => config('seo-tools.routing.middleware')
 ], function() {
     Route::get('/', [
         'uses' => 'SeoRedirectController@index',

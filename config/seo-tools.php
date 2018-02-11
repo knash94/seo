@@ -17,7 +17,8 @@ return [
         ],
 
         'redirects' => [
-            'edit' => 'seo-tools::bootstrap3.redirects.edit'
+            'edit' => 'seo-tools::bootstrap3.redirects.edit',
+            'delete' => 'seo-tools::bootstrap3.redirects.delete'
         ]
     ]
 ];

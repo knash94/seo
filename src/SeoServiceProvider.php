@@ -25,6 +25,10 @@ class SeoServiceProvider extends ServiceProvider {
         $this->publishes([
             __DIR__.'/../config/seo-tools.php' => config_path('seo-tools.php')
         ], 'config');
+
+        $this->publishes([
+            __DIR__.'/../database/migrations/' => database_path('/migrations')
+        ], 'migrations');
 	}
 
 	/**
