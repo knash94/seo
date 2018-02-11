@@ -23,7 +23,7 @@ class SeoServiceProvider extends ServiceProvider {
         $this->loadViewsFrom(__DIR__.'\..\views', 'seo-tools');
 
         $this->publishes([
-            __DIR__.'/../config/seo-tools.php.php' => config_path('seo-tools.php')
+            __DIR__.'/../config/seo-tools.php' => config_path('seo-tools.php')
         ], 'config');
 	}
 
