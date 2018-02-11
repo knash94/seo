@@ -28,8 +28,48 @@ Also add the `LogsMissingPages` trait to `\App\Exceptions\Handler.php`
 use LogsMissingPages;
 ````
 
+Finally, publish the vendor files and run the migrations by running these commands
+
+```
+php artisan vendor:publish --provider=Knash94\Seo\SeoServiceProvider
+php artisan migrate
+```
+
+##Configuration
+There are various configuration options to choose from, I'd recommend setting the `middleware`, `template` and `section` values. Simply open seo-tools.php and set the new values. Below is an example setup using your own template
+
+```php
+<?php
+
+return [
+    'routing' => [
+        'prefix' => 'admin/seo-tools',
+        'namespace' => 'Knash94\Seo\Http\Controllers',
+        'middleware' => ['auth']
+    ],
+
+    'views' => [
+        'template' => 'layout.admin',
+        'section' => 'content',
+        'index' => 'seo-tools::bootstrap3.index',
+
+        'errors' => [
+            'edit' => 'seo-tools::bootstrap3.errors.edit'
+        ],
+
+        'redirects' => [
+            'edit' => 'seo-tools::bootstrap3.redirects.edit',
+            'delete' => 'seo-tools::bootstrap3.redirects.delete'
+        ]
+    ]
+];
+```
+
+If you want to link the redirect manager into your admin panel, then create a link to the `seo-tools.index` route
+
 ## Todo
-- Redirect manager screen
 - Testing suite
 - Ability to test if a redirect works as intended before applying the change
-- Config file with middleware permissions, so only authorised members can access the manager
+- To mass insert redirects
+- Add exclude urls option
+- Ability to add regex into redirects
