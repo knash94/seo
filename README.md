@@ -39,7 +39,7 @@ php artisan vendor:publish --provider=Knash94\Seo\SeoServiceProvider
 php artisan migrate
 ```
 
-##Configuration
+## Configuration
 There are various configuration options to choose from, I'd recommend setting the `middleware`, `template` and `section` values. Simply open seo-tools.php and set the new values. Below is an example setup using your own template
 
 ```php
