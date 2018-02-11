@@ -10,6 +10,10 @@ return [
     'views' => [
         'template' => 'seo-tools::templates.default',
         'section' => 'content',
-        'index' => 'seo-tools::bootstrap3.index'
+        'index' => 'seo-tools::bootstrap3.index',
+
+        'errors' => [
+            'edit' => 'seo-tools::bootstrap3.errors.edit'
+        ]
     ]
 ];

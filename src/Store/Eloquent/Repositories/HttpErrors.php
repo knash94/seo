@@ -3,6 +3,8 @@
 namespace Knash94\Seo\Store\Eloquent\Repositories;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
 use Knash94\Seo\Contracts\HttpErrorsContract;
@@ -92,7 +94,7 @@ class HttpErrors implements HttpErrorsContract
      * @param string $direction
      * @param bool $paginate
      * @param int $perPage
-     * @return
+     * @return LengthAwarePaginator|Collection
      */
     public function getErrors($sort = 'hits', $direction = 'desc', $paginate = true, $perPage = 12)
     {
@@ -110,5 +112,16 @@ class HttpErrors implements HttpErrorsContract
         }
 
         return $query->get();
+    }
+
+    /**
+     * Returns the HTTP Error
+     *
+     * @param $id
+     * @return HttpError
+     */
+    public function getError($id)
+    {
+        return $this->model->find($id);
     }
 }

@@ -8,4 +8,9 @@ Route::group([
         'uses' => 'SeoRedirectController@index',
         'as' => 'seo-tools.index'
     ]);
+
+    Route::get('/error/{id}', [
+        'uses' => 'ErrorsController@edit',
+        'as' => 'seo-tools.error.edit'
+    ]);
 });

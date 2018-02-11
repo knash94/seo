@@ -35,15 +35,15 @@
             <tbody>
             @foreach($errors as $error)
                 <tr>
-                    <td>{{ url() }}/{{ $error->path }}</td>
+                    <td><a href="{{ url() }}/{{ $error->path }}">{{ url() }}/{{ $error->path }}</a></td>
                     <td>{{ $error->hits }}</td>
                     <td>{{ $error->last_hit->diffForHumans() }}</td>
                     <td>{{ $error->created_at->diffForHumans() }}</td>
                     <td>
                         @if ($error->redirect)
-                            <a class="btn btn-xs btn-success">Manage redirect</a>
+                            <a href="{{ route('seo-tools.error.edit', [$error->id]) }}" class="btn btn-xs btn-success">Manage redirect</a>
                         @else
-                            <a href="#" class="btn btn-xs btn-primary">Add redirect</a>
+                            <a href="{{ route('seo-tools.error.edit', [$error->id]) }}" class="btn btn-xs btn-primary">Add redirect</a>
                         @endif
                     </td>
                 </tr>
