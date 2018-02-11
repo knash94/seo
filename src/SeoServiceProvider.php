@@ -3,9 +3,11 @@
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
 use Knash94\Seo\Contracts\HttpErrorsContract;
+use Knash94\Seo\Contracts\HttpRedirectsContract;
 use Knash94\Seo\Contracts\PageNotFoundHandlerContract;
 use Knash94\Seo\Services\Pagination;
 use Knash94\Seo\Store\Eloquent\Repositories\HttpErrors;
+use Knash94\Seo\Store\Eloquent\Repositories\HttpRedirects;
 
 class SeoServiceProvider extends ServiceProvider {
 
@@ -35,7 +37,9 @@ class SeoServiceProvider extends ServiceProvider {
 	{
 	    app()->bind(HttpErrorsContract::class, HttpErrors::class);
 	    app()->bind(PageNotFoundHandlerContract::class, PageNotFoundHandler::class);
-	}
+        app()->bind(HttpRedirectsContract::class, HttpRedirects::class);
+
+    }
 
     protected function registerRoutes()
     {
