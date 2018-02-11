@@ -15,7 +15,14 @@ class SeoServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		//
+		$this->registerRoutes();
+
+//		dd(__DIR__.'\..\views');
+        $this->loadViewsFrom(__DIR__.'\..\views', 'seo-tools');
+
+        $this->publishes([
+            __DIR__.'/../config/seo-tools.php.php' => config_path('seo-tools.php')
+        ], 'config');
 	}
 
 	/**
@@ -28,5 +35,10 @@ class SeoServiceProvider extends ServiceProvider {
 	    app()->bind(HttpErrorsContract::class, HttpErrors::class);
 	    app()->bind(PageNotFoundHandlerContract::class, PageNotFoundHandler::class);
 	}
+
+    protected function registerRoutes()
+    {
+        include __DIR__.'/routes.php';
+    }
 
 }

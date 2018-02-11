@@ -79,4 +79,22 @@ class HttpErrors implements HttpErrorsContract
             'last_hit' => Carbon::now()
         ]);
     }
+
+    /**
+     * Gets the latest HTTP errors
+     *
+     * @param string $sort
+     * @param string $direction
+     */
+    public function getErrors($sort = 'hits', $direction = 'desc', $paginate = true, $perPage = 16)
+    {
+        $query = $this->model
+            ->orderBy($sort, $direction);
+
+        if ($paginate) {
+            return $query->paginate($perPage);
+        }
+
+        return $query->get();
+    }
 }
