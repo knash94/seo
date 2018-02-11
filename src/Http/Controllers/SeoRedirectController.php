@@ -69,7 +69,7 @@ class SeoRedirectController extends BaseController {
      */
     protected function getRedirects($request)
     {
-        $sort = $request->has('redirects-sort') ? $request->get('redirects-sort') : 'last_hit';
+        $sort = $request->has('redirects-sort') ? $request->get('redirects-sort') : 'created_at';
         $sortDir = $request->has('redirects-sort-dir') ? $request->get('redirects-sort-dir') : 'desc';
 
         return $this->httpRedirects->getRedirects($sort, $sortDir);
