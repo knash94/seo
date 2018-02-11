@@ -15,7 +15,7 @@ Once installed, add the following line into your `config/app.php` service provid
 
 Then open your `\App\Exceptions\Handler.php` file and insert the following code under the render method, be sure not to change any existing code on the method
 ```php
-$redirect = $this->reportNotFound($e);
+$redirect = $this->reportNotFound($exception);
 
 if ($redirect && $redirect instanceof RedirectResponse) {
     return $redirect;
@@ -25,6 +25,9 @@ Also add the `LogsMissingPages` trait to `\App\Exceptions\Handler.php`
 ```php
 use LogsMissingPages;
 ````
+
+Also import the `Illuminate\Http\RedirectResponse;` in `App\Exceptions\Handler.php`
+
 
 Finally, publish the vendor files and run the migrations by running these commands
 
