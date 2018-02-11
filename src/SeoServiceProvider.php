@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
 use Knash94\Seo\Contracts\HttpErrorsContract;
 use Knash94\Seo\Contracts\PageNotFoundHandlerContract;
+use Knash94\Seo\Services\Pagination;
 use Knash94\Seo\Store\Eloquent\Repositories\HttpErrors;
 
 class SeoServiceProvider extends ServiceProvider {

@@ -16,7 +16,7 @@
                     </ul>
 
                     <div class="tab-content">
-                        <div id="home" class="tab-pane fade {{ Request::get('tab') == 'errors' || Request::get('tab') ? 'in active' : ''}}">
+                        <div id="home" class="tab-pane fade {{ Request::get('tab') == 'errors' || !Request::get('tab') ? 'in active' : ''}}">
                             <h3>HTTP Errors</h3>
                             <p>Lists all 404 errors that have been recorded.</p>
 
@@ -48,6 +48,8 @@
                                             @endforeach
                                         </tbody>
                                     </table>
+
+                                    {!! $errors->render() !!}
                                 </div>
                             </div>
                         </div>

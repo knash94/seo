@@ -3,17 +3,22 @@
 namespace Knash94\Seo\Store\Eloquent\Repositories;
 
 use Carbon\Carbon;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
 use Knash94\Seo\Contracts\HttpErrorsContract;
+use Knash94\Seo\Services\Pagination;
 use Knash94\Seo\Store\Eloquent\Models\HttpError;
 
 class HttpErrors implements HttpErrorsContract
 {
     protected $model;
 
-    function __construct(HttpError $model)
+    protected $pagination;
+
+    function __construct(HttpError $model, Pagination $pagination)
     {
         $this->model = $model;
+        $this->pagination = $pagination;
     }
 
     /**
@@ -86,13 +91,19 @@ class HttpErrors implements HttpErrorsContract
      * @param string $sort
      * @param string $direction
      */
-    public function getErrors($sort = 'hits', $direction = 'desc', $paginate = true, $perPage = 16)
+    public function getErrors($sort = 'hits', $direction = 'desc', $paginate = true, $perPage = 12)
     {
         $query = $this->model
             ->orderBy($sort, $direction);
 
         if ($paginate) {
-            return $query->paginate($perPage);
+            $this->pagination->setPageParameter('errors');
+
+            $results = $query->paginate($perPage, ['*'])->setPageName('errors');
+
+            $this->pagination->resetPage();
+
+            return $results;
         }
 
         return $query->get();
