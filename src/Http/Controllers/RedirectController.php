@@ -64,4 +64,40 @@ class RedirectController extends BaseController {
         session()->flash('seo-tools.message', 'You have successfully updated the redirect.');
         return redirect()->back();
     }
+
+    /**
+     * Shows the delete screen
+     *
+     * @param $id
+     * @return View
+     */
+    public function delete($id)
+    {
+        $redirect = $this->httpRedirects->getRedirect($id);
+
+        if (!$redirect) {
+            abort(404);
+        }
+
+        return view(config('seo-tools.views.redirects.delete'), [
+            'template' => config('seo-tools.views.template'),
+            'section' => config('seo-tools.views.section'),
+            'httpRedirect' => $redirect
+        ]);
+    }
+
+    /**
+     * Destroys the redirect
+     *
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy($id)
+    {
+        $this->httpRedirects->destroy($id);
+
+        session()->flash('seo-tools.message', 'You have successfully deleted the redirect.');
+
+        return redirect()->route('seo-tools.index');
+    }
 }

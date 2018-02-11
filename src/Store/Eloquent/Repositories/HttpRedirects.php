@@ -16,6 +16,7 @@ class HttpRedirects implements HttpRedirectsContract
      * @var HttpRedirect
      */
     protected $model;
+
     /**
      * @var Pagination
      */
@@ -81,6 +82,17 @@ class HttpRedirects implements HttpRedirectsContract
         }
 
         return $model->update($this->refineRedirectData($data, $model));
+    }
+
+    /**
+     * Deletes the redirect
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function destroy($id)
+    {
+        return $this->model->where('id', $id)->delete();
     }
 
     /**

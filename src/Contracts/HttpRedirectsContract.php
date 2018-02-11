@@ -35,4 +35,12 @@ interface HttpRedirectsContract
      * @return \Illuminate\Database\Eloquent\Model|int|null
      */
     public function updateRedirect($id, $data);
+
+    /**
+     * Deletes the redirect
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function destroy($id);
 }

@@ -19,6 +19,16 @@ Route::group([
         'as' => 'seo-tools.error.update'
     ]);
 
+    Route::get('/redirect/{id}/delete', [
+        'uses' => 'RedirectController@delete',
+        'as' => 'seo-tools.redirect.remove'
+    ]);
+
+    Route::get('/redirect/{id}/destroy', [
+        'uses' => 'RedirectController@destroy',
+        'as' => 'seo-tools.redirect.destroy'
+    ]);
+
     Route::get('/redirect/{id}', [
         'uses' => 'RedirectController@edit',
         'as' => 'seo-tools.redirect.edit'
