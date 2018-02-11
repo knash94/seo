@@ -43,7 +43,7 @@ class ErrorsController extends BaseController {
         return view(config('seo-tools.views.errors.edit'), [
             'template' => config('seo-tools.views.template'),
             'section' => config('seo-tools.views.section'),
-            'error' => $error
+            'httpError' => $error
         ]);
     }
 

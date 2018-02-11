@@ -5,21 +5,34 @@
         <div class="row">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h1 class="panel-title">Managing {{ url() }}/{{ $error->path }}</h1>
+                    <h1 class="panel-title">Managing {{ url() }}/{{ $httpError->path }}</h1>
                 </div>
 
                 <div class="panel-body">
-                    <form action="{{ route('seo-tools.error.update', $error->id) }}" method="post">
+                    <form action="{{ route('seo-tools.error.update', $httpError->id) }}" method="post">
+
+                        @if (isset($errors) && $errors->all())
+                            <div class="form-group">
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+                        @endif
+
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                         <div class="form-group">
                             <label class="control-label" for="path">Base path</label>
-                            <input class="form-control" type="text" value="{{ url() }}/{{ $error->path }}" id="path" readonly>
+                            <input class="form-control" type="text" value="{{ url() }}/{{ $httpError->path }}" id="path" readonly>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label" for="target">Redirect to</label>
-                            <input class="form-control" name="redirect_url" type="text" value="{{ $error->redirect ? $error->redirect->redirect_url : '' }}" id="target" placeholder="https://www.example.com/my-example-page" required>
+                            <input class="form-control" name="redirect_url" type="text" value="{{ $httpError->redirect ? $httpError->redirect->redirect_url : '' }}" id="target" placeholder="https://www.example.com/my-example-page" required>
                             <span class="text-warning">* This must be the full url of where you are wanting to redirect to</span>
                         </div>
 
@@ -27,8 +40,8 @@
                             <label class="control-label" for="status_code">Status code</label>
                             <select name="status_code" class="form-control" required>
                                 <option disabled readonly selected>Please select..</option>
-                                <option value="301" {{ $error->redirect && $error->redirect->status_code == 301 ? 'selected' : '' }}>301 (Permanent redirect)</option>
-                                <option value="302" {{ $error->redirect && $error->redirect->status_code == 301 ? 'selected' : '' }}>302 (Temporary redirect)</option>
+                                <option value="301" {{ $httpError->redirect && $httpError->redirect->status_code == 301 ? 'selected' : '' }}>301 (Permanent redirect)</option>
+                                <option value="302" {{ $httpError->redirect && $httpError->redirect->status_code == 302 ? 'selected' : '' }}>302 (Temporary redirect)</option>
                             </select>
                         </div>
 

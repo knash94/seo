@@ -9,6 +9,14 @@
                 </div>
 
                 <div class="panel-body">
+                    @if (session('seo-tools.message'))
+                        <div class="form-group">
+                            <div class="alert alert-success">
+                                {{ session('seo-tools.message') }}
+                            </div>
+                        </div>
+                    @endif
+
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#home">View errors</a></li>
                         <li><a data-toggle="tab" href="#menu1">View redirects</a></li>
