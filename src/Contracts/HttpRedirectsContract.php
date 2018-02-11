@@ -20,6 +20,14 @@ interface HttpRedirectsContract
     public function getRedirects($sort = 'hits', $direction = 'desc', $paginate = true, $perPage = 12);
 
     /**
+     * Checks whether the url has a redirect
+     *
+     * @param $url
+     * @return null
+     */
+    public function getUrlRedirect($url);
+
+    /**
      * Returns the HTTP Redirect of a given ID
      *
      * @param $id

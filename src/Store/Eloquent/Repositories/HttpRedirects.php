@@ -29,6 +29,19 @@ class HttpRedirects implements HttpRedirectsContract
     }
 
     /**
+     * Checks whether the url has a redirect
+     *
+     * @param $url
+     * @return null
+     */
+    public function getUrlRedirect($url)
+    {
+        return $this->model
+            ->where('path', $url)
+            ->first();
+    }
+
+    /**
      * Gets the latest HTTP redirects
      *
      * @param string $sort

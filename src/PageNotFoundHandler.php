@@ -5,6 +5,7 @@ namespace Knash94\Seo;
 
 use Illuminate\Http\Request;
 use Knash94\Seo\Contracts\HttpErrorsContract;
+use Knash94\Seo\Contracts\HttpRedirectsContract;
 use Knash94\Seo\Contracts\PageNotFoundHandlerContract;
 use Knash94\Seo\Store\Eloquent\Models\HttpError;
 
@@ -20,10 +21,22 @@ class PageNotFoundHandler implements PageNotFoundHandlerContract
      */
     protected $request;
 
-    function __construct(HttpErrorsContract $httpErrors, Request $request)
+    /**
+     * @var HttpRedirectsContract
+     */
+    protected $httpRedirects;
+
+    /**
+     * PageNotFoundHandler constructor.
+     * @param HttpErrorsContract $httpErrors
+     * @param HttpRedirectsContract $httpRedirects
+     * @param Request $request
+     */
+    function __construct(HttpErrorsContract $httpErrors, HttpRedirectsContract $httpRedirects, Request $request)
     {
         $this->httpErrors = $httpErrors;
         $this->request = $request;
+        $this->httpRedirects = $httpRedirects;
     }
 
     /**
@@ -36,36 +49,14 @@ class PageNotFoundHandler implements PageNotFoundHandlerContract
     {
         $url = $this->request->path();
 
-        if ($this->httpErrors->checkUrlExists($url)) {
-            return $this->handleHttpError($url);
-        }
-
-        return $this->createHttpError($url);
-    }
-
-    /**
-     * Creates the http error record
-     *
-     * @param $url
-     * @return HttpError
-     */
-    protected function createHttpError($url)
-    {
-        return $this->httpErrors->createUrlError($url);
-    }
-
-    /**
-     *
-     *
-     * @param $url
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    protected function handleHttpError($url)
-    {
-        if ($redirect = $this->httpErrors->getUrlRedirect($url)) {
+        if ($redirect = $this->httpRedirects->getUrlRedirect($url)) {
             return redirect()->to($redirect->redirect_url, $redirect->status_code);
         }
 
-        $this->httpErrors->addHitToError($url);
+        if ($this->httpErrors->checkUrlExists($url)) {
+            return $this->httpErrors->addHitToError($url);
+        }
+
+        return $this->httpErrors->createUrlError($url);
     }
 }
