@@ -2,7 +2,7 @@
     "name": "knash94/seo-tools",
     "description": "Provides 404 page logging and redirecting for Laravel 5+",
     "require": {
-        "laravel/laravel": "5.*"
+        "laravel/laravel": "5.*.*"
     },
     "authors": [
         {
