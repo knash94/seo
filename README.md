@@ -23,6 +23,10 @@ if ($redirect && $redirect instanceof RedirectResponse) {
     return $redirect;
 }
 ````
+Also add the `LogsMissingPages` trait to `\App\Exceptions\Handler.php`
+```php
+use LogsMissingPages;
+````
 
 ## Todo
 - Redirect manager screen
