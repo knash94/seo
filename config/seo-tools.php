@@ -22,7 +22,8 @@ return [
         ]
     ],
 
-    'exclude' => [
-        '/https?:\/\/[^ ]+?(?:\.jpg|\.png|\.gif)/' // Filters images
+    // Filters what URLs to not record using regex
+    'filters' => [
+        '/(\.png)|(\.jpg)|(\.gif)/' // Filters images
     ]
 ];
