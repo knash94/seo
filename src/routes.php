@@ -11,6 +11,11 @@ Route::group([
     ]);
 
     Route::get('/error/{id}', [
+        'uses' => 'ErrorsController@view',
+        'as' => 'seo-tools.error.view'
+    ]);
+
+    Route::get('/error/{id}/edit', [
         'uses' => 'ErrorsController@edit',
         'as' => 'seo-tools.error.edit'
     ]);

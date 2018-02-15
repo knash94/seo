@@ -31,6 +31,28 @@ class ErrorsController extends BaseController {
      * @param Request $request
      * @return View
      */
+    public function view($id, Request $request)
+    {
+        $error = $this->httpErrors->getError($id);
+
+        if (!$error) {
+            abort(404);
+        }
+
+        return view(config('seo-tools.views.errors.view'), [
+            'template' => config('seo-tools.views.template'),
+            'section' => config('seo-tools.views.section'),
+            'httpError' => $error
+        ]);
+    }
+
+    /**
+     * Shows the page to edit
+     *
+     * @param $id
+     * @param Request $request
+     * @return View
+     */
     public function edit($id, Request $request)
     {
         $error = $this->httpErrors->getError($id);
