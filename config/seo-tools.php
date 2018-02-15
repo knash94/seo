@@ -24,6 +24,7 @@ return [
 
     // Filters what URLs to not record using regex
     'filters' => [
-        '/(\.png)|(\.jpg)|(\.gif)/' // Filters images
+        '/(\.png)|(\.jpg)|(\.gif)/',
+        '/wp\-login\.php/'
     ]
 ];
