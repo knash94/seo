@@ -3,7 +3,7 @@
 <a href="https://packagist.org/packages/knash94/seo"><img src="https://poser.pugx.org/knash94/seo/v/stable.svg" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/knash94/seo"><img src="https://poser.pugx.org/knash94/seo/license.svg" alt="License"></a>
 
-A laravel 5 package that adds the ability to log 404 errors and to action these with redirects via a user interface. This has several benefits over creating redirect in a .htaccess (Or your web servers equivalent) as the main laravel application will run and then 404 if a page cannot be found, this is where the package will determine whether there is a redirect available. This prevents scenarios where a redirect may be hit before laravel and limiting access to your application. On top of this, it gives SEO members the ability to track 404 errors and action them with ease.
+A laravel 5 package that adds the ability to log 404 errors and to action these with redirects via a user interface. This has several benefits over creating redirect in a .htaccess (Or your web servers equivalent) as the main laravel application will run and then 404 if a page cannot be found, this is where the package will determine whether there is a redirect available. This prevents scenarios where a redirect may be hit before laravel and limiting access to your application. On top of this, it gives SEO members the ability to track 404 errors, tracking where they have come from and then action them with ease.
 
 ## Installation
 Install the package with composer
@@ -58,14 +58,21 @@ return [
         'index' => 'seo-tools::bootstrap3.index',
 
         'errors' => [
-            'edit' => 'seo-tools::bootstrap3.errors.edit'
+                    'edit' => 'seo-tools::bootstrap3.errors.edit',
+                    'view' => 'seo-tools::bootstrap3.errors.view'
+                ],
+        
+                'redirects' => [
+                    'edit' => 'seo-tools::bootstrap3.redirects.edit',
+                    'delete' => 'seo-tools::bootstrap3.redirects.delete'
+                ]
         ],
-
-        'redirects' => [
-            'edit' => 'seo-tools::bootstrap3.redirects.edit',
-            'delete' => 'seo-tools::bootstrap3.redirects.delete'
+        
+        // Filters what URLs to not record using regex
+        'filters' => [
+            '/(\.png)|(\.jpg)|(\.gif)/',
+            '/wp\-login\.php/'
         ]
-    ]
 ];
 ```
 
@@ -75,5 +82,4 @@ If you want to link the redirect manager into your admin panel, then create a li
 - Testing suite
 - Ability to test if a redirect works as intended before applying the change
 - To mass insert redirects
-- Add exclude urls option
 - Ability to add regex into redirects
