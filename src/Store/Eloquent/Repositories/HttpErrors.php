@@ -5,8 +5,7 @@ namespace Knash94\Seo\Store\Eloquent\Repositories;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Facades\DB;
+use Knash94\Seo\Contracts\AgentContract;
 use Knash94\Seo\Contracts\HttpErrorsContract;
 use Knash94\Seo\Services\Pagination;
 use Knash94\Seo\Store\Eloquent\Models\HttpError;
@@ -17,10 +16,13 @@ class HttpErrors implements HttpErrorsContract
 
     protected $pagination;
 
-    function __construct(HttpError $model, Pagination $pagination)
+    protected $agent;
+
+    function __construct(HttpError $model, Pagination $pagination, AgentContract $agent)
     {
         $this->model = $model;
         $this->pagination = $pagination;
+        $this->agent = $agent;
     }
 
     /**
@@ -42,11 +44,11 @@ class HttpErrors implements HttpErrorsContract
      */
     public function createUrlError($url)
     {
-        return $this->model->create([
+        return $this->recordErrorRequest($this->model->create([
             'path' => $url,
             'hits' => 1,
             'last_hit' => Carbon::now()
-        ]);
+        ]));
     }
 
     /**
@@ -81,10 +83,14 @@ class HttpErrors implements HttpErrorsContract
      */
     public function addHitToError($url)
     {
-        return $this->model->where('path', $url)->update([
-            'hits' => DB::raw('hits + 1'),
+        $model = $this->model->where('path', $url)->first();
+
+        $model->update([
+            'hits' => $model->hits + 1,
             'last_hit' => Carbon::now()
         ]);
+
+        return $this->recordErrorRequest($model);
     }
 
     /**
@@ -161,5 +167,16 @@ class HttpErrors implements HttpErrorsContract
             'status_code' => $data['status_code'],
             'path' => $model->path
         ];
+    }
+
+    /**
+     * Add the record of the user agent
+     *
+     * @param $httpError
+     * @return mixed
+     */
+    protected function recordErrorRequest($httpError)
+    {
+        return $httpError->requests()->create($this->agent->getAgentInformation());
     }
 }

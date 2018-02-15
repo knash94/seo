@@ -30,6 +30,7 @@
                     First reported
                 </a>
             </th>
+            <th>View requests</th>
             <th>Manage</th>
             </thead>
             <tbody>
@@ -39,6 +40,9 @@
                     <td>{{ $error->hits }}</td>
                     <td>{{ $error->last_hit->diffForHumans() }}</td>
                     <td>{{ $error->created_at->diffForHumans() }}</td>
+                    <td>
+                        <a href="{{ route('seo-tools.error.view', [$error->id]) }}" class="btn btn-xs btn-default">View requests</a>
+                    </td>
                     <td>
                         @if ($error->redirect)
                             <a href="{{ route('seo-tools.error.edit', [$error->id]) }}" class="btn btn-xs btn-success">Manage redirect</a>

@@ -13,7 +13,8 @@ return [
         'index' => 'seo-tools::bootstrap3.index',
 
         'errors' => [
-            'edit' => 'seo-tools::bootstrap3.errors.edit'
+            'edit' => 'seo-tools::bootstrap3.errors.edit',
+            'view' => 'seo-tools::bootstrap3.errors.view'
         ],
 
         'redirects' => [
