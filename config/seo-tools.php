@@ -20,5 +20,9 @@ return [
             'edit' => 'seo-tools::bootstrap3.redirects.edit',
             'delete' => 'seo-tools::bootstrap3.redirects.delete'
         ]
+    ],
+
+    'exclude' => [
+        '/https?:\/\/[^ ]+?(?:\.jpg|\.png|\.gif)/' // Filters images
     ]
 ];

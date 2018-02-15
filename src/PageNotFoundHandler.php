@@ -52,10 +52,29 @@ class PageNotFoundHandler implements PageNotFoundHandlerContract
             return redirect()->to($redirect->redirect_url, $redirect->status_code);
         }
 
-        if ($this->httpErrors->checkUrlExists($url)) {
-            return $this->httpErrors->addHitToError($url);
+        if ($this->passesFilter($url)) {
+            if ($this->httpErrors->checkUrlExists($url)) {
+                return $this->httpErrors->addHitToError($url);
+            }
+
+            return $this->httpErrors->createUrlError($url);
+        }
+    }
+
+    /**
+     * Checks whether to exclude the URL or not
+     *
+     * @param $url
+     * @return bool
+     */
+    protected function passesFilter($url)
+    {
+        foreach (config('seo-tools.filters') as $filter) {
+            if (preg_match($filter, $url)) {
+                return false;
+            }
         }
 
-        return $this->httpErrors->createUrlError($url);
+        return true;
     }
 }
