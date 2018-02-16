@@ -31,7 +31,7 @@ class Agent implements AgentContract
         return [
             'user_agent' => $this->request->header('USER_AGENT', 'N/A'),
             'ip_address' => $this->request->getClientIp(),
-            'last_url' => $this->request->server('HTTP_REFERER') ?: $this->request->header('referer')
+            'previous_url' => $this->request->server('HTTP_REFERER') ?: $this->request->header('referer')
         ];
     }
 }
