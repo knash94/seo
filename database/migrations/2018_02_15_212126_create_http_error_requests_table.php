@@ -16,7 +16,7 @@ class CreateHttpErrorRequestsTable extends Migration {
 		{
 			$table->increments('id');
 
-			$table->integer('http_error_id');
+			$table->integer('http_error_id')->unsigned();
 
 			$table->string('user_agent');
 
