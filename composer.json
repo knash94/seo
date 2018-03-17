@@ -7,6 +7,15 @@
             "email": "kylenash94@gmail.com"
         }
     ],
+    "require": {
+      "illuminate/support": "~5.0"
+    },
+    "require-dev": {
+        "fzaninotto/faker": "~1.4",
+        "mockery/mockery": "0.9.*",
+        "phpunit/phpunit": "~5.0",
+        "orchestra/testbench": "~3.0"
+    },
     "license": "MIT",
     "autoload": {
         "psr-4": {
