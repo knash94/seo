@@ -24,7 +24,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "KestrelSAAS\\CRM\\Tests\\": "tests/"
+            "Knash94\\Seo\\Tests\\": "tests/"
         }
     }
 }
