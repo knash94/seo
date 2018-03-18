@@ -4,7 +4,7 @@ return [
     'routing' => [
         'prefix' => 'admin/seo-tools',
         'namespace' => 'Knash94\Seo\Http\Controllers',
-        'middleware' => ['web']
+        'middleware' => ['web', 'auth']
     ],
 
     'views' => [

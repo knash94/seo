@@ -2,8 +2,7 @@
 
 namespace Knash94\Seo\Tests\Unit;
 
-
-class TestCase extends \Orchestra\Testbench\TestCase
+class TestCase extends \Orchestra\Testbench\BrowserKit\TestCase
 {
     protected function setUp()
     {
