@@ -138,7 +138,7 @@ class HttpErrors implements HttpErrorsContract
      * @param $data
      * @return \Illuminate\Database\Eloquent\Model|int|null
      */
-    public function updateError($id, $data)
+    public function updateErrorRedirect($id, $data)
     {
         $model = $this->getError($id);
 

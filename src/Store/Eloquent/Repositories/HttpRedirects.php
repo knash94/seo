@@ -112,11 +112,11 @@ class HttpRedirects implements HttpRedirectsContract
      * Deletes the redirect
      *
      * @param $id
-     * @return mixed
+     * @return boolean
      */
     public function destroy($id)
     {
-        return $this->model->where('id', $id)->delete();
+        return (bool)$this->model->where('id', $id)->delete();
     }
 
     /**

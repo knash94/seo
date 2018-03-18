@@ -62,5 +62,13 @@ interface HttpErrorsContract
      * @param $data
      * @return \Illuminate\Database\Eloquent\Model|int|null
      */
-    public function updateError($id, $data);
+    public function updateErrorRedirect($id, $data);
+
+    /**
+     * Returns the HTTP Error
+     *
+     * @param $id
+     * @return HttpError
+     */
+    public function getError($id);
 }
