@@ -54,8 +54,4 @@ class ErrorsControllerTest extends TestCase
         $request->assertResponseStatus(302);
         $this->assertEquals($error->redirect->redirect_url, 'https://www.google.com');
     }
-
-
-
-
 }
