@@ -20,6 +20,8 @@
         <includePath>.</includePath>
         <server name="REQUEST_URI" value="http://dev.testing.com"/>
         <server name="HTTP_HOST" value="dev.testing.com"/>
+        <env name="APP_DEBUG" value="true"/>
+        <env name="APP_KEY" value="base64:vJ+4f7tZjo0WlCewMCyYjx5PEpSF7+x7ZeNhbND5wdA="/>
         <env name="APP_ENV" value="testing"/>
         <env name="CACHE_DRIVER" value="array"/>
         <env name="SESSION_DRIVER" value="array"/>

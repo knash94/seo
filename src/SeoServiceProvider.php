@@ -20,9 +20,12 @@ class SeoServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->registerRoutes();
+        $this->mergeConfigFrom(__DIR__.'/../config/seo-tools.php', 'seo-tools');
+
+        $this->registerRoutes();
 
         $this->loadViewsFrom(__DIR__.'/../views', 'seo-tools');
+
 
         $this->publishes([
             __DIR__.'/../config/seo-tools.php' => config_path('seo-tools.php')
