@@ -77,7 +77,7 @@ class ErrorsController extends BaseController {
      */
     public function update($id, ErrorRequest $request)
     {
-        $update = $this->httpErrors->updateError($id, $request->only(['redirect_url', 'status_code']));
+        $update = $this->httpErrors->updateErrorRedirect($id, $request->only(['redirect_url', 'status_code']));
 
         if ($update) {
             session()->flash('seo-tools.message', 'You have successfully updated the redirect.');
