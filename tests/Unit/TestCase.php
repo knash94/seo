@@ -6,10 +6,13 @@ use Knash94\Seo\Tests\Unit\Exception\Handler;
 
 class TestCase extends \Orchestra\Testbench\BrowserKit\TestCase
 {
+    /**
+     * Loads the migrations, factories and binds the ExceptionHandler for testing
+     */
     protected function setUp()
     {
         parent::setUp();
-        $this->loadMigrationsFrom(__DIR__ . '\..\..\database/migrations');
+        $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
         $this->loadFactories();
         $this->app->singleton(\Illuminate\Contracts\Debug\ExceptionHandler::class, Handler::class);
     }
@@ -24,8 +27,11 @@ class TestCase extends \Orchestra\Testbench\BrowserKit\TestCase
         return ['Knash94\Seo\SeoServiceProvider'];
     }
 
+    /**
+     * Loads the factories used during tests
+     */
     protected function loadFactories()
     {
-        $this->withFactories(__DIR__ . '\..\factories');
+        $this->withFactories(__DIR__ . '/../factories');
     }
 }
