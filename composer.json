@@ -7,6 +7,11 @@
             "email": "kylenash94@gmail.com"
         }
     ],
+    "keywords": [
+        "seo",
+        "laravel",
+        "redirect"
+    ],
     "require": {
       "illuminate/support": "~5.0"
     },
@@ -26,6 +31,13 @@
     "autoload-dev": {
         "psr-4": {
             "Knash94\\Seo\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Knash94\\Seo\\SeoServiceProvider"
+            ]
         }
     }
 }
