@@ -9,6 +9,8 @@
                 </div>
 
                 <div class="panel-body">
+                    <a href="{{ route('seo-tools.index') }}" class="btn btn-primary">Go back</a>
+
                     <table class="table table-responsive table-hover">
                         <thead>
                         <th>Requested</th>
@@ -17,7 +19,7 @@
                         <th>Referral URL</th>
                         </thead>
                         <tbody>
-                        @foreach ($httpError->requests as $request)
+                        @foreach ($requests as $request)
                             <tr>
                                 <td title="{{ $request->created_at }}">{{ $request->created_at->diffForHumans() }}</td>
                                 <td>{{ $request->user_agent }}</td>
@@ -28,7 +30,8 @@
                         </tbody>
                     </table>
 
-                    <a href="{{ route('seo-tools.index') }}" class="btn btn-primary">Go back</a>
+                    {!! $requests->render() !!}
+
                 </div>
             </div>
         </div>
