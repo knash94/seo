@@ -23,6 +23,8 @@ class ErrorsControllerTest extends TestCase
 
         $request->assertResponseStatus(200);
         $request->assertViewHas('template');
+        $request->assertViewHas('requests');
+        $request->assertViewHas('httpError');
         $request->seeText('User Agent');
     }
 
