@@ -11,13 +11,15 @@
                 <div class="panel-body">
                     <table class="table table-responsive table-hover">
                         <thead>
-                            <th>User Agent</th>
-                            <th>Ip address</th>
-                            <th>Referral URL</th>
+                        <th>Requested</th>
+                        <th>User Agent</th>
+                        <th>Ip address</th>
+                        <th>Referral URL</th>
                         </thead>
                         <tbody>
                         @foreach ($httpError->requests as $request)
                             <tr>
+                                <td title="{{ $request->created_at }}">{{ $request->created_at->diffForHumans() }}</td>
                                 <td>{{ $request->user_agent }}</td>
                                 <td>{{ $request->ip_address }}</td>
                                 <td>{{ $request->previous_url ?: 'N/A' }}</td>
