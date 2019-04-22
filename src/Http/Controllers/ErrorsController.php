@@ -12,7 +12,8 @@ use Knash94\Seo\Contracts\HttpErrorsContract;
 use Knash94\Seo\Contracts\HttpRedirectsContract;
 use Knash94\Seo\Http\Requests\ErrorRequest;
 
-class ErrorsController extends BaseController {
+class ErrorsController extends BaseController
+{
 
     /**
      * @var HttpErrorsContract
@@ -39,10 +40,13 @@ class ErrorsController extends BaseController {
             abort(404);
         }
 
+        $requests = $error->requests()->paginate();
+
         return view(config('seo-tools.views.errors.view'), [
             'template' => config('seo-tools.views.template'),
             'section' => config('seo-tools.views.section'),
-            'httpError' => $error
+            'httpError' => $error,
+            'requests' => $requests
         ]);
     }
 
